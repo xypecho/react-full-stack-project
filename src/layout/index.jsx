@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-23 17:01:48
+ * @Last Modified time: 2019-10-23 17:37:56
  * @description: 首页布局
  */
 import React, { useState } from "react";
@@ -11,9 +11,20 @@ const { Header, Sider, Content } = Layout;
 
 function LayoutElem() {
     const [collapsed, setCollapsed] = useState(false);
+    const [marginLeft, setMarginLeft] = useState(200);
+    const toggle = () => {
+        setCollapsed(!collapsed)
+        setMarginLeft(!collapsed ? 80 : 200)
+    }
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed}
+                style={{
+                    height: '100vh',
+                    overflow: 'auto',
+                    position: 'fixed',
+                    left: 0,
+                }}>
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1">
@@ -28,14 +39,24 @@ function LayoutElem() {
                         <Icon type="upload" />
                         <span>nav 3</span>
                     </Menu.Item>
+                    {
+                        [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
+                            return (
+                                <Menu.Item key={index}>
+                                    <Icon type="upload" />
+                                    <span>{item}</span>
+                                </Menu.Item>
+                            )
+                        })
+                    }
                 </Menu>
             </Sider>
-            <Layout>
+            <Layout style={{ marginLeft }}>
                 <Header style={{ background: '#fff', padding: 0 }}>
                     <Icon
                         className="trigger"
                         type={collapsed ? 'menu-unfold' : 'menu-fold'}
-                        onClick={() => setCollapsed(!collapsed)}
+                        onClick={toggle}
                     />
                 </Header>
                 <Content
@@ -44,10 +65,17 @@ function LayoutElem() {
                         padding: 24,
                         background: '#fff',
                         minHeight: 280,
+                        overflow: 'initial'
                     }}
                 >
-                    Content
-          </Content>
+                    {
+                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                            return (
+                                <h1>{item}</h1>
+                            )
+                        })
+                    }
+                </Content>
             </Layout>
         </Layout>
     );
