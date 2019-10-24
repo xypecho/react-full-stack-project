@@ -6,6 +6,7 @@
  * @description: 首页布局
  */
 import React, { useState } from "react";
+import './index.styl';
 import { Layout, Menu, Icon } from 'antd';
 const { Header, Sider, Content } = Layout;
 
@@ -25,7 +26,9 @@ function LayoutElem() {
                     position: 'fixed',
                     left: 0,
                 }}>
-                <div className="logo" />
+                <div className="logo">
+                    呆呆
+                </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1">
                         <Icon type="user" />
