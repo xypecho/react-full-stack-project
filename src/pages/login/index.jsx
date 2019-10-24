@@ -2,18 +2,17 @@
  * @Author: xueyp
  * @Date: 2019-10-23 15:17:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-24 10:21:06
+ * @Last Modified time: 2019-10-24 17:12:44
  * @description: 登录页面
  */
 import React from "react";
 import { Tabs } from 'antd';
+import LoginForm from './logoin.jsx';
+import RegisterForm from './register.jsx';
 import './index.styl';
 const { TabPane } = Tabs;
 
 function Login() {
-    const callback = (key) => {
-        console.log(key)
-    }
     return (
         <div className="login">
             <div className="textBox">
@@ -27,12 +26,12 @@ function Login() {
                 <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
             </div>
             <div className="loginBox" v-loading='loading'>
-                <Tabs defaultActiveKey="1" onChange={callback}>
-                    <TabPane tab="Tab 1" key="1">
-                        Content of Tab Pane 1
+                <Tabs defaultActiveKey="1">
+                    <TabPane tab="注册" key="1">
+                        <RegisterForm />
                     </TabPane>
-                    <TabPane tab="Tab 2" key="2">
-                        Content of Tab Pane 2
+                    <TabPane tab="登录" key="2">
+                        <LoginForm />
                     </TabPane>
                 </Tabs>
             </div>
