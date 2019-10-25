@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 09:28:22
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 10:26:28
+ * @Last Modified time: 2019-10-25 10:46:24
  * @description: 封装的axios请求
  */
 import axios from 'axios';
@@ -18,14 +18,19 @@ service.interceptors.request.use(function (config) {
     return config;
 }, function (error) {
     // Do something with request error
-    console.log(11111111111)
     return Promise.reject(error);
 });
 
 // Add a response interceptor
 service.interceptors.response.use(function (response) {
     // Do something with response data
-    return response;
+    const data = response.data;
+    if (data.status === 201) {
+        message.error(data.message);
+        return Promise.reject(data);
+    } else {
+        return response;
+    }
 }, function (error) {
     // Do something with response error
     console.log(error)

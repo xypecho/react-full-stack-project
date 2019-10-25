@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 09:56:41
+ * @Last Modified time: 2019-10-25 15:53:37
  * @description: 登录的表单
  */
 import React from 'react';
@@ -10,11 +10,17 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { login } from 'api/user';
 
 class LoginForm extends React.Component {
-    handleSubmit = e => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect:  '/'
+        }
+    }
+    handleSubmit = () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                login().then(res => {
-                    console.log(res)
+                login(values).then(res => {
+                    this.props.history.push('/');
                 })
             }
         });
@@ -50,4 +56,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default Form.create({ name: 'normal_login' })(LoginForm);
+export default Form.create()(LoginForm)
