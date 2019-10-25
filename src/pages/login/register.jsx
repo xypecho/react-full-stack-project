@@ -2,11 +2,11 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 16:26:48
+ * @Last Modified time: 2019-10-25 16:29:11
  * @description: 注册的表单
  */
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { register } from 'api/user';
 
 class RegisterForm extends React.Component {
