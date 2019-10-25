@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 15:17:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 15:42:56
+ * @Last Modified time: 2019-10-25 15:58:52
  * @description: 登录页面
  */
 import React from "react";
@@ -27,12 +27,12 @@ export default class Login extends React.Component {
                     <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
                 </div>
                 <div className="loginBox" v-loading='loading'>
-                    <Tabs defaultActiveKey="2">
+                    <Tabs defaultActiveKey="1">
                         <TabPane tab="注册" key="1">
-                            <RegisterForm />
+                            <RegisterForm history={this.props.history} />
                         </TabPane>
                         <TabPane tab="登录" key="2">
-                            <LoginForm history ={this.props.history} />
+                            <LoginForm history={this.props.history} />
                         </TabPane>
                     </Tabs>
                 </div>
