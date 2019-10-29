@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 15:24:11
+ * @Last Modified time: 2019-10-29 21:54:20
  * @description: 首页布局
  */
 import React from "react";
@@ -59,7 +59,7 @@ export default class LayoutElem extends React.Component {
                         }
                     </Menu>
                 </Sider>
-                <Layout style={{ marginLeft: this.state.marginLeft }}>
+                <Layout style={{ marginLeft: this.state.marginLeft, transition: 'all 0.2s' }}>
                     <Header style={{ background: '#fff', padding: 0 }}>
                         <Icon
                             className="trigger"
@@ -69,10 +69,7 @@ export default class LayoutElem extends React.Component {
                     </Header>
                     <Content
                         style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            background: '#fff',
-                            minHeight: 280,
+                            minHeight: 480,
                             overflow: 'initial'
                         }}
                     >
