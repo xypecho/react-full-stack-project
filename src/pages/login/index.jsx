@@ -27,7 +27,7 @@ export default class Login extends React.Component {
                     <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
                 </div>
                 <div className="loginBox" v-loading='loading'>
-                    <Tabs defaultActiveKey="1">
+                    <Tabs defaultActiveKey="2">
                         <TabPane tab="注册" key="1">
                             <RegisterForm history={this.props.history} />
                         </TabPane>

@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 15:57:32
+ * @Last Modified time: 2019-11-12 13:44:52
  * @description: 登录的表单
  */
 import React from 'react';
@@ -15,6 +15,9 @@ class LoginForm extends React.Component {
         this.state = {
             redirect:  '/'
         }
+    }
+    handleEnterEvent = () => {
+        this.handleSubmit();
     }
     handleSubmit = () => {
         this.props.form.validateFields((err, values) => {
@@ -43,6 +46,7 @@ class LoginForm extends React.Component {
                     })(
                         <Input
                             type="password"
+                            onPressEnter={() => this.handleEnterEvent()}
                         />,
                     )}
                 </Form.Item>

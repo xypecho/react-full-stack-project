@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 16:29:11
+ * @Last Modified time: 2019-11-12 13:44:51
  * @description: 注册的表单
  */
 import React from 'react';
@@ -10,6 +10,15 @@ import { Form, Input, Button } from 'antd';
 import { register } from 'api/user';
 
 class RegisterForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect:  '/'
+        }
+    }
+    handleEnterEvent = () => {
+        this.handleSubmit();
+    }
     handleSubmit = () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -65,6 +74,7 @@ class RegisterForm extends React.Component {
                     })(
                         <Input
                             type="password"
+                            onPressEnter={() => this.handleEnterEvent()}
                         />,
                     )}
                 </Form.Item>
