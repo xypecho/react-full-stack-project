@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-13 15:34:31
+ * @Last Modified time: 2019-11-13 16:06:53
  * @description: 首页
  */
 import React from 'react';
@@ -11,6 +11,7 @@ import { Row, Col, Icon } from 'antd';
 import { getHitokoto } from 'api/spider';
 import ToDoList from 'component/toDoList/index';
 import GithubDynamic from 'component/githubDynamic/index';
+import BaseAreaCharts from 'component/charts/baseAreaCharts/index';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -47,7 +48,6 @@ export default class Home extends React.Component {
                             <Col span={24}>
                                 <div className="grid-content bg-purple-dark">
                                     <p>『 {this.state.hitokoto} 』 —— 《{this.state.from}》 </p>
-                                    {/* <i className="el-icon-refresh"></i> */}
                                     <Icon type="redo" onClick={() => this.getHitokotoApi()} />
                                 </div>
                             </Col>
@@ -91,7 +91,10 @@ export default class Home extends React.Component {
                             </Col>
                         </Row>
                     </div >
-                </div >
+                </div>
+                <div className="home-echarts">
+                    <BaseAreaCharts/>
+                </div>
                 <div className="dynamic">
                     <div className="github-time-line">
                         <div className="charts-header">
