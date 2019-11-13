@@ -54,17 +54,22 @@ export default class Todolist extends React.Component {
         })
         this.state.newToDoList = '';
     }
-    inputTextChange(e){
+    inputTextChange(e) {
         this.setState({
             newToDoList: e.target.value
         })
+    }
+    handleKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.addTodoList();
+        }
     }
     render() {
         return (
             <div className="toDoList">
                 <Card className="box-card">
                     <div className="clearfix">
-                        <input type="text" placeholder="please enter your todo list here" value={this.state.newToDoList} onChange={(e)=>this.inputTextChange(e)} />
+                        <input type="text" placeholder="please enter your todo list here" value={this.state.newToDoList} onChange={(e) => this.inputTextChange(e)} onKeyUp={e => this.handleKeyUp(e)} />
                         <Button type="link" style={{ float: 'right', padding: '3px 0' }} onClick={() => this.addTodoList()}>新增</Button>
                     </div>
                     {

@@ -69,7 +69,7 @@ export default class LayoutElem extends React.Component {
                     </Header>
                     <Content
                         style={{
-                            minHeight: 480,
+                            height: 'calc(100vh - 64px)',
                             overflow: 'initial'
                         }}
                     >
