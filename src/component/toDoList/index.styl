@@ -1,0 +1,74 @@
+.box-card {
+    width: 100%;
+
+    .clearfix {
+        &:before, &:after {
+            display: table;
+            content: '';
+        }
+
+        &:after {
+            clear: both;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            width: 50%;
+        }
+    }
+
+    .item {
+        background: #fff;
+        color: #4d4d4d;
+        font: 14px Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        margin: 0 auto;
+        line-height: 50px;
+        border-bottom: 1px solid #ededed;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &:hover .delete-icon {
+            display: block;
+        }
+
+        img {
+            flex: 0 0 40px;
+        }
+
+        input {
+            position: absolute;
+            border: none;
+            bottom: 0;
+            height: auto;
+            margin: auto 0;
+            opacity: 0;
+            text-align: center;
+            top: 0;
+            width: 40px;
+            height: 50px;
+        }
+
+        label {
+            font-size: 14px;
+            flex: 1;
+            padding-left: 10px;
+        }
+
+        .isComplete {
+            text-decoration: line-through;
+            color: #d9d9d9;
+        }
+
+        .delete-icon {
+            float: right;
+            font-size: 20px;
+            color: #F56C6C;
+            cursor: pointer;
+            display: none;
+            flex: 0 0 20px;
+        }
+    }
+}

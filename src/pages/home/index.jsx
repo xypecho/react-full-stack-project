@@ -2,14 +2,34 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-29 21:18:21
+ * @Last Modified time: 2019-11-13 11:04:53
  * @description: 首页
  */
 import React from 'react';
 import './index.styl';
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
+import { getHitokoto } from 'api/spider';
+import ToDoList from 'component/toDoList/index';
 
 export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hitokoto: '',
+            from: ''
+        }
+    }
+    componentDidMount() {
+        this.getHitokotoApi();
+    }
+    getHitokotoApi = () => {
+        getHitokoto().then(res => {
+            this.setState({
+                hitokoto: res.data.hitokoto,
+                from: res.data.from
+            })
+        })
+    }
     render() {
         return (
             <div className="home-wrapper">
@@ -22,14 +42,15 @@ export default class Home extends React.Component {
                         </svg>
                     </a>
                     <div className="home-header">
-                        {/* <Row>
+                        <Row>
                             <Col span={24}>
-                            <div className="grid-content bg-purple-dark">
-                                <p>『 {{ hitokoto }} 』 —— 《{{ from }}》 </p>
-                                <i className="el-icon-refresh"></i>
-                            </div>
-                        </Col>
-                    </Row> */}
+                                <div className="grid-content bg-purple-dark">
+                                    <p>『 {this.state.hitokoto} 』 —— 《{this.state.from}》 </p>
+                                    {/* <i className="el-icon-refresh"></i> */}
+                                    <Icon type="redo" onClick={() => this.getHitokotoApi()} />
+                                </div>
+                            </Col>
+                        </Row>
                         <Row gutter={20}>
                             <Col span="16">
                                 <div className="home-header-left">
@@ -70,6 +91,27 @@ export default class Home extends React.Component {
                         </Row>
                     </div >
                 </div >
+                <div className="dynamic">
+                        <div className="github-time-line">
+                            <div className="charts-header">
+                                <span>github动态</span>
+                            </div>
+                            {/* <div className="github-time-line-item">
+                    <div className="github-time-line-item-left">
+                        <img :src="item.author.avatar_url" alt="" height="32">
+                    </div>
+                    <div className="github-time-line-item-right">
+                        <p><span style="color:rgb(64, 158, 255)">{{ item.commit.committer.name }}</span> 在 vue-full-stack-project 提交了内容为<span style="color:rgb(64, 158, 255)">{{ item.commit.message }}</span>的更新</p>
+                        <span>{{ item.commit.committer.date | formatterGithubCommitTime }}</span>
+                    </div>
+                </div> */}
+                        </div>
+                        <div className="features-to-developed">
+                            <div className="charts-header">
+                                <ToDoList/>
+                            </div>
+                        </div>
+                    </div>
             </div >
         )
     }
