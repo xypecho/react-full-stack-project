@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-13 11:04:53
+ * @Last Modified time: 2019-11-13 15:34:31
  * @description: 首页
  */
 import React from 'react';
@@ -10,6 +10,7 @@ import './index.styl';
 import { Row, Col, Icon } from 'antd';
 import { getHitokoto } from 'api/spider';
 import ToDoList from 'component/toDoList/index';
+import GithubDynamic from 'component/githubDynamic/index';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export default class Home extends React.Component {
                             </Col>
                         </Row>
                         <Row gutter={20}>
-                            <Col span="16">
+                            <Col span={16}>
                                 <div className="home-header-left">
                                     {/* <div className="home-header-left-child">
                         <span className="avatar-wrapper">
@@ -70,7 +71,7 @@ export default class Home extends React.Component {
                                     </div>
                                 </div>
                             </Col>
-                            <Col span="8">
+                            <Col span={8}>
                                 <div className="home-header-right">
                                     <div className="home-header-right-child">
                                         <p>任务数</p>
@@ -92,26 +93,18 @@ export default class Home extends React.Component {
                     </div >
                 </div >
                 <div className="dynamic">
-                        <div className="github-time-line">
-                            <div className="charts-header">
-                                <span>github动态</span>
-                            </div>
-                            {/* <div className="github-time-line-item">
-                    <div className="github-time-line-item-left">
-                        <img :src="item.author.avatar_url" alt="" height="32">
-                    </div>
-                    <div className="github-time-line-item-right">
-                        <p><span style="color:rgb(64, 158, 255)">{{ item.commit.committer.name }}</span> 在 vue-full-stack-project 提交了内容为<span style="color:rgb(64, 158, 255)">{{ item.commit.message }}</span>的更新</p>
-                        <span>{{ item.commit.committer.date | formatterGithubCommitTime }}</span>
-                    </div>
-                </div> */}
+                    <div className="github-time-line">
+                        <div className="charts-header">
+                            <span>github动态</span>
                         </div>
-                        <div className="features-to-developed">
-                            <div className="charts-header">
-                                <ToDoList/>
-                            </div>
+                        <GithubDynamic />
+                    </div>
+                    <div className="features-to-developed">
+                        <div className="charts-header">
+                            <ToDoList />
                         </div>
                     </div>
+                </div>
             </div >
         )
     }
