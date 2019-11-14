@@ -2,12 +2,15 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 16:43:29
+ * @Last Modified time: 2019-11-14 17:37:10
  * @description: 首页布局
  */
 import React from "react";
 import './index.styl';
 import { Layout, Menu, Icon, Dropdown } from 'antd';
+import { connect } from 'react-redux';
+import * as actionCreators from 'store/actions';
+
 const { Header, Sider, Content } = Layout;
 const menu = (
     <Menu>
@@ -16,7 +19,7 @@ const menu = (
     </Menu>
 );
 
-export default class LayoutElem extends React.Component {
+class LayoutElem extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,6 +36,7 @@ export default class LayoutElem extends React.Component {
     render() {
         return (
             <Layout>
+                <button onClick={() => this.test({ name: 134 })}>click aaaaaa</button>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}
                     style={{
                         height: '100vh',
@@ -89,3 +93,16 @@ export default class LayoutElem extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.userInfo,
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        test() {
+            dispatch(actionCreators.setUserInfo());
+        }
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutElem);
