@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 20:47:32
+ * @Last Modified time: 2019-11-14 21:56:27
  * @description: 首页布局
  */
 import React from "react";
@@ -77,8 +77,11 @@ class LayoutElem extends React.Component {
                             onClick={() => this.toggle()}
                         />
                         <Dropdown overlay={menu} trigger={['hover']}>
-                            <span style={{ userSelect: 'none' }}>Right Click on Me</span>
+                            <span className='username' style={{ userSelect: 'none' }}>{this.props.userInfo.username}</span>
                         </Dropdown>
+                        <div className="avatar">
+                            <img src={this.props.userInfo.avatar} alt="" height="40" width="40" />
+                        </div>
                     </Header>
                     <Content
                         style={{
@@ -98,14 +101,4 @@ const mapStateToProps = (state) => {
         userInfo: state.userInfo,
     }
 };
-const mapDispatchToProps = (dispatch) => {
-    return {
-        test(data) {
-            console.log('==============')
-            console.log(data)
-            console.log('==============')
-            dispatch(actionCreators.setUserInfo(data));
-        }
-    }
-};
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutElem);
+export default connect(mapStateToProps)(LayoutElem);
