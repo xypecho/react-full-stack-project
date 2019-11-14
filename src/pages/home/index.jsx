@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 16:36:21
+ * @Last Modified time: 2019-11-14 21:22:04
  * @description: 首页
  */
 import React from 'react';
@@ -12,14 +12,14 @@ import { getHitokoto } from 'api/spider';
 import ToDoList from 'component/toDoList/index';
 import GithubDynamic from 'component/githubDynamic/index';
 import BaseAreaCharts from 'component/charts/baseAreaCharts/index';
+import { connect } from 'react-redux';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             hitokoto: '',
             from: '',
-            userInfo: '',
             greetings: ''
         }
     }
@@ -48,7 +48,6 @@ export default class Home extends React.Component {
             this.setState({
                 hitokoto: res.data.hitokoto,
                 from: res.data.from,
-                userInfo: JSON.parse(localStorage.getItem('userInfo')),
                 greetings: greeting
             })
         })
@@ -78,12 +77,12 @@ export default class Home extends React.Component {
                                 <div className="home-header-left">
                                     <div className="home-header-left-child">
                                         <span className="avatar-wrapper">
-                                            <img src={this.state.userInfo.avatar} alt="" />
+                                            <img src={this.props.userInfo.avatar} alt="" />
                                         </span>
                                     </div>
                                     <div className="home-header-left-secondChild">
                                         <div className="home-header-left-secondChild-top">
-                                            {this.state.greetings}{this.state.userInfo.username}，祝你开心每一天！
+                                            {this.state.greetings}{this.props.userInfo.username}，祝你开心每一天！
                                     </div>
                                         <div className="home-header-left-secondChild-bottom">
                                             技术部 | 只会切图的切图仔
@@ -132,3 +131,10 @@ export default class Home extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.userInfo
+    }
+};
+export default connect(mapStateToProps, null)(Home);

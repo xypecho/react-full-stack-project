@@ -40,7 +40,7 @@ export default class BaseAreaCharts extends React.Component {
             tableData: []
         }
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         getUserLoginCount().then(res => {
             _Tools.formatterChartsData(res.data);
             this.setState({

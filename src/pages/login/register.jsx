@@ -2,12 +2,14 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 15:42:56
+ * @Last Modified time: 2019-11-14 21:01:25
  * @description: 注册的表单
  */
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { register } from 'api/user';
+import { connect } from 'react-redux';
+import * as actionCreators from 'store/actions';
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -23,6 +25,7 @@ class RegisterForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 register(values).then(res => {
+                    this.props.changeUserInfo(res.data.data);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.data));
                     this.props.history.push('/');
                 })
@@ -89,4 +92,11 @@ class RegisterForm extends React.Component {
     }
 }
 
-export default Form.create({ name: 'normal_login' })(RegisterForm);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeUserInfo(data) {
+            dispatch(actionCreators.setUserInfo(data));
+        }
+    }
+};
+export default connect(null, mapDispatchToProps)(Form.create()(RegisterForm));

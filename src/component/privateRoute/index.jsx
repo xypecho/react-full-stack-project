@@ -15,7 +15,7 @@ class PrivateRoute extends React.Component {
             isLogin: localStorage.getItem('userInfo')
         }
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if (!this.state.isLogin) {
             const { history } = this.props;
             setTimeout(() => {

@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 17:37:10
+ * @Last Modified time: 2019-11-14 20:47:32
  * @description: 首页布局
  */
 import React from "react";
@@ -34,9 +34,9 @@ class LayoutElem extends React.Component {
         });
     };
     render() {
+        const { test } = this.props;
         return (
             <Layout>
-                <button onClick={() => this.test({ name: 134 })}>click aaaaaa</button>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}
                     style={{
                         height: '100vh',
@@ -100,8 +100,11 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        test() {
-            dispatch(actionCreators.setUserInfo());
+        test(data) {
+            console.log('==============')
+            console.log(data)
+            console.log('==============')
+            dispatch(actionCreators.setUserInfo(data));
         }
     }
 };
