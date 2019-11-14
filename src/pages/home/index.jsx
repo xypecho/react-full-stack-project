@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-13 16:06:53
+ * @Last Modified time: 2019-11-14 16:36:21
  * @description: 首页
  */
 import React from 'react';
@@ -18,17 +18,38 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             hitokoto: '',
-            from: ''
+            from: '',
+            userInfo: '',
+            greetings: ''
         }
     }
     componentDidMount() {
         this.getHitokotoApi();
     }
     getHitokotoApi = () => {
+        const currentHours = new Date().getHours();
+        let greeting;
+        if (currentHours < 6) {
+            greeting = '快睡觉，小心猝死哦！';
+        } else if (currentHours < 9) {
+            greeting = '今天，又是充满希望的一天！';
+        } else if (currentHours < 12) {
+            greeting = '午饭吃的什么呢？';
+        } else if (currentHours < 14) {
+            greeting = '记得午休哦！';
+        } else if (currentHours < 17) {
+            greeting = '各部门注意，马上6点了！';
+        } else if (currentHours < 19) {
+            greeting = '吃完饭不要马上运动哦！';
+        } else {
+            greeting = '在加班吗？辛苦了！';
+        }
         getHitokoto().then(res => {
             this.setState({
                 hitokoto: res.data.hitokoto,
-                from: res.data.from
+                from: res.data.from,
+                userInfo: JSON.parse(localStorage.getItem('userInfo')),
+                greetings: greeting
             })
         })
     }
@@ -55,15 +76,14 @@ export default class Home extends React.Component {
                         <Row gutter={20}>
                             <Col span={16}>
                                 <div className="home-header-left">
-                                    {/* <div className="home-header-left-child">
-                        <span className="avatar-wrapper">
-                            <img v-if="!user.avatar || user.avatar == 'null' || user.avatar == ''" src="~@/assets/images/avatar.gif" alt="">
-                                <img v-else : src="user.avatar" alt="">
-                                    </span>
-                                </div> */}
+                                    <div className="home-header-left-child">
+                                        <span className="avatar-wrapper">
+                                            <img src={this.state.userInfo.avatar} alt="" />
+                                        </span>
+                                    </div>
                                     <div className="home-header-left-secondChild">
                                         <div className="home-header-left-secondChild-top">
-                                            ，祝你开心每一天！
+                                            {this.state.greetings}{this.state.userInfo.username}，祝你开心每一天！
                                     </div>
                                         <div className="home-header-left-secondChild-bottom">
                                             技术部 | 只会切图的切图仔
@@ -93,7 +113,7 @@ export default class Home extends React.Component {
                     </div >
                 </div>
                 <div className="home-echarts">
-                    <BaseAreaCharts/>
+                    <BaseAreaCharts />
                 </div>
                 <div className="dynamic">
                     <div className="github-time-line">

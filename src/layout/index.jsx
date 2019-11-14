@@ -2,13 +2,19 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-29 21:54:20
+ * @Last Modified time: 2019-11-14 16:43:29
  * @description: 首页布局
  */
 import React from "react";
 import './index.styl';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Dropdown } from 'antd';
 const { Header, Sider, Content } = Layout;
+const menu = (
+    <Menu>
+        <Menu.Item key="1">账户设置</Menu.Item>
+        <Menu.Item key="2">退出登录</Menu.Item>
+    </Menu>
+);
 
 export default class LayoutElem extends React.Component {
     constructor(props) {
@@ -66,6 +72,9 @@ export default class LayoutElem extends React.Component {
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={() => this.toggle()}
                         />
+                        <Dropdown overlay={menu} trigger={['hover']}>
+                            <span style={{ userSelect: 'none' }}>Right Click on Me</span>
+                        </Dropdown>
                     </Header>
                     <Content
                         style={{

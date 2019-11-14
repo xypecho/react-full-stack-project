@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-12 13:44:52
+ * @Last Modified time: 2019-11-14 15:42:49
  * @description: 登录的表单
  */
 import React from 'react';
@@ -13,7 +13,7 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect:  '/'
+            redirect: '/'
         }
     }
     handleEnterEvent = () => {
@@ -23,6 +23,7 @@ class LoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 login(values).then(res => {
+                    localStorage.setItem('userInfo', JSON.stringify(res.data.data));
                     this.props.history.push('/');
                 })
             }
