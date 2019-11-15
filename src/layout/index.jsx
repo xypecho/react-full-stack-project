@@ -7,17 +7,12 @@
  */
 import React from "react";
 import './index.styl';
-import { Layout, Menu, Icon, Dropdown } from 'antd';
+import { Layout, Menu, Icon, Dropdown, Modal, Button } from 'antd';
 import { connect } from 'react-redux';
 import * as actionCreators from 'store/actions';
 
 const { Header, Sider, Content } = Layout;
-const menu = (
-    <Menu>
-        <Menu.Item key="1">账户设置</Menu.Item>
-        <Menu.Item key="2">退出登录</Menu.Item>
-    </Menu>
-);
+const { confirm } = Modal;
 
 class LayoutElem extends React.Component {
     constructor(props) {
@@ -33,8 +28,27 @@ class LayoutElem extends React.Component {
             marginLeft: this.state.collapsed ? '200px' : '80px'
         });
     };
+    handleDropMenuClick({ key }) {
+        if (key === '1') {
+
+        } else {
+            confirm({
+                title: '警告',
+                content: '此操作将退出系统, 是否继续?',
+                onOk() {
+                    window.localStorage.clear();
+                    window.location.reload();
+                },
+            });
+        }
+    }
     render() {
-        const { test } = this.props;
+        const menu = (
+            <Menu onClick={(data) => this.handleDropMenuClick(data)}>
+                <Menu.Item key="1">账户设置</Menu.Item>
+                <Menu.Item key="2">退出登录</Menu.Item>
+            </Menu>
+        );
         return (
             <Layout>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}
