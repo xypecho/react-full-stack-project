@@ -2,17 +2,18 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 21:56:27
+ * @Last Modified time: 2019-11-15 14:47:40
  * @description: 首页布局
  */
 import React from "react";
 import './index.styl';
-import { Layout, Menu, Icon, Dropdown, Modal, Button } from 'antd';
+import { Layout, Menu, Icon, Dropdown, Modal } from 'antd';
 import { connect } from 'react-redux';
 import * as actionCreators from 'store/actions';
 
 const { Header, Sider, Content } = Layout;
 const { confirm } = Modal;
+const { SubMenu } = Menu;
 
 class LayoutElem extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class LayoutElem extends React.Component {
             marginLeft: '200px'
         };
     }
-    toggle = () => {
+    toggle() {
         this.setState({
             collapsed: !this.state.collapsed,
             marginLeft: this.state.collapsed ? '200px' : '80px'
@@ -42,6 +43,9 @@ class LayoutElem extends React.Component {
             });
         }
     }
+    handleItemClick(data) {
+        this.props.history.push(data.key)
+    }
     render() {
         const menu = (
             <Menu onClick={(data) => this.handleDropMenuClick(data)}>
@@ -58,29 +62,39 @@ class LayoutElem extends React.Component {
                         position: 'fixed',
                         left: 0,
                     }}>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={({ item, key, keyPath, domEvent }) => this.handleItemClick({ item, key, keyPath, domEvent })}>
                         <Menu.Item key="1">
-                            <Icon type="user" />
-                            <span>nav 1</span>
+                            <span>工作台</span>
                         </Menu.Item>
-                        <Menu.Item key="2">
-                            <Icon type="video-camera" />
-                            <span>nav 2</span>
+                        <SubMenu
+                            key="2"
+                            title={
+                                <span>
+                                    <span>表单页</span>
+                                </span>
+                            }
+                        >
+                            <Menu.Item key="5">分步表单</Menu.Item>
+                            <Menu.Item key="6">文件上传</Menu.Item>
+                        </SubMenu>
+                        <SubMenu
+                            key="3"
+                            title={
+                                <span>
+                                    <span>系统设置</span>
+                                </span>
+                            }
+                        >
+                            <Menu.Item key="5">用户管理</Menu.Item>
+                            <Menu.Item key="6">帐号设置</Menu.Item>
+                            <Menu.Item key="7">操作日志</Menu.Item>
+                        </SubMenu>
+                        <Menu.Item key="4">
+                            <span>权限测试页</span>
                         </Menu.Item>
-                        <Menu.Item key="3">
-                            <Icon type="upload" />
-                            <span>nav 3</span>
+                        <Menu.Item key="/404">
+                            <span>404</span>
                         </Menu.Item>
-                        {
-                            [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
-                                return (
-                                    <Menu.Item key={index}>
-                                        <Icon type="upload" />
-                                        <span>{item}</span>
-                                    </Menu.Item>
-                                )
-                            })
-                        }
                     </Menu>
                 </Sider>
                 <Layout style={{ marginLeft: this.state.marginLeft, transition: 'all 0.2s' }}>
