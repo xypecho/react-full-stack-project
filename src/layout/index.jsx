@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-15 14:51:23
+ * @Last Modified time: 2019-11-18 10:24:09
  * @description: 首页布局
  */
 import React from "react";
@@ -90,7 +90,7 @@ class LayoutElem extends React.Component {
                             }
                         >
                             <Menu.Item key="5">分步表单</Menu.Item>
-                            <Menu.Item key="6">文件上传</Menu.Item>
+                            <Menu.Item key="/form/fileUpload">文件上传</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="/config"
