@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 14:12:21
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-18 10:25:29
+ * @Last Modified time: 2019-11-19 11:11:58
  * @description: 入口文件
  */
 import React from "react";
@@ -15,26 +15,32 @@ import FileUpload from 'pages/fileUpload/index';
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
 import { Provider } from 'react-redux'
 import store from "./store/index";
+// 把antd内置的英文改成中文
+import zhCN from 'antd/es/locale/zh_CN';
+import { ConfigProvider } from 'antd';
+// 把antd内置的英文改成中文
 
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/" render={props => (
-              <LayoutElem history={props.history}>
-                <Switch>
-                  <PrivateRoute exact path="/" component={Home} />
-                  <PrivateRoute path="/form/fileUpload" component={FileUpload} />
-                  <Route component={ErrorPage} />
-                </Switch>
-              </LayoutElem>
-            )} />
-          </Switch>
-        </Router>
-      </Provider>
+      <ConfigProvider locale={zhCN}>
+        <Provider store={store}>
+          <Router>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/" render={props => (
+                <LayoutElem history={props.history}>
+                  <Switch>
+                    <PrivateRoute exact path="/" component={Home} />
+                    <PrivateRoute path="/form/fileUpload" component={FileUpload} />
+                    <Route component={ErrorPage} />
+                  </Switch>
+                </LayoutElem>
+              )} />
+            </Switch>
+          </Router>
+        </Provider>
+      </ConfigProvider>
     )
   }
 }
