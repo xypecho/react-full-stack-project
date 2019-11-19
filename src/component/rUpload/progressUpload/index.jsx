@@ -2,20 +2,22 @@
  * @Author: xueyp
  * @Date: 2019-11-18 16:38:27
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-18 17:02:59
+ * @Last Modified time: 2019-11-19 14:06:38
  * @description: 有进度条版本的文件上传
  */
 import React from 'react';
-import { Progress, Button, Modal } from 'antd';
+import { Progress, Button, Modal, message } from 'antd';
+import { connect } from 'react-redux';
+import { uploadFile } from 'api/upload';
 import './index.styl';
 
 const { confirm } = Modal;
 
-export default class ProgressUpload extends React.Component {
+class ProgressUpload extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            percent: 60
+            percent: 0
         }
     }
     uploadFile() {
@@ -28,7 +30,35 @@ export default class ProgressUpload extends React.Component {
         });
     }
     confirmUpload() {
-        console.log(this.refs.uploadBtn.files)
+        if (this.refs.uploadBtn.files.length && this.refs.uploadBtn.files.length < 100) {
+            const formData = new FormData();
+            formData.append('username', this.props.userInfo.username);
+            formData.append('uid', this.props.userInfo.uid);
+            const allowType = ['image/jpeg', 'image/png', 'image/gif'];
+            for (let i = 0; i < this.refs.uploadBtn.files.length; i++) {
+                if (allowType.indexOf(this.refs.uploadBtn.files[i].type) !== -1) {
+                    formData.append('file', this.refs.uploadBtn.files[i]);
+                } else {
+                    message.error('上传失败，只允许上传图片哦');
+                    return;
+                }
+            }
+            uploadFile(formData, (e) => {
+                this.setState({
+                    percent: Math.round((e.loaded / e.total) * 100)
+                })
+            }).then(() => {
+                message.success('上传成功');
+                this.props.successUpload();
+                setTimeout(() => {
+                    this.setState({
+                        percent: 0
+                    })
+                }, 500);
+            })
+        } else {
+            message.error('批量上传单次最多允许上传99张图片');
+        }
     }
     render() {
         return (
@@ -51,3 +81,9 @@ export default class ProgressUpload extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.userInfo
+    }
+}
+export default connect(mapStateToProps)(ProgressUpload);

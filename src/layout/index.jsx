@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-18 10:24:09
+ * @Last Modified time: 2019-11-19 11:25:12
  * @description: 首页布局
  */
 import React from "react";
@@ -144,7 +144,7 @@ class LayoutElem extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        userInfo: state.userInfo,
+        userInfo: state.userInfo
     }
 };
 export default connect(mapStateToProps)(LayoutElem);

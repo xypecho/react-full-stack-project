@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 09:28:22
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-10-25 10:46:24
+ * @Last Modified time: 2019-11-19 14:00:15
  * @description: 封装的axios请求
  */
 import axios from 'axios';

@@ -39,6 +39,10 @@ class FileUpload extends React.Component {
                 total: res.data.total,
                 loading: false
             })
+        }).catch(err=>{
+                    this.setState({
+            loading: false
+        })
         })
     }
     pageChange(data) {
@@ -53,9 +57,12 @@ class FileUpload extends React.Component {
     }
     handleDelete(text) {
         deleteUploadList({ id: text.id, uid: this.props.userInfo.uid }).then(res => {
-            message.success(res.data.message);
+            message.success('文件删除成功');
             this.getFilesListApi();
         })
+    }
+    successUpload(){
+        this.getFilesListApi();
     }
     render() {
         const columns = [
@@ -87,7 +94,7 @@ class FileUpload extends React.Component {
         return (
             <div className='fileUpload'>
                 <Spin spinning={this.state.loading}>
-                    <ProgressUpload />
+                    <ProgressUpload successUpload={()=>this.successUpload()}/>
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="upload_time" />
                     <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
