@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-18 10:22:38
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-18 16:47:09
+ * @Last Modified time: 2019-11-19 14:38:35
  * @description: 文件上传
  */
 import React from 'react';
@@ -39,10 +39,10 @@ class FileUpload extends React.Component {
                 total: res.data.total,
                 loading: false
             })
-        }).catch(err=>{
-                    this.setState({
-            loading: false
-        })
+        }).catch(() => {
+            this.setState({
+                loading: false
+            })
         })
     }
     pageChange(data) {
@@ -61,7 +61,11 @@ class FileUpload extends React.Component {
             this.getFilesListApi();
         })
     }
-    successUpload(){
+    handleDetail(text) {
+        console.log(text)
+        this.props.history.push(`/form/fileUploadDetail?id=1`)
+    }
+    successUpload() {
         this.getFilesListApi();
     }
     render() {
@@ -84,7 +88,7 @@ class FileUpload extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <a>查看</a>
+                        <a onClick={() => this.handleDetail(text)}>查看</a>
                         <Divider type="vertical" />
                         <a onClick={() => this.handleDelete(text, record)}>删除</a>
                     </span>
@@ -94,7 +98,7 @@ class FileUpload extends React.Component {
         return (
             <div className='fileUpload'>
                 <Spin spinning={this.state.loading}>
-                    <ProgressUpload successUpload={()=>this.successUpload()}/>
+                    <ProgressUpload successUpload={() => this.successUpload()} />
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="upload_time" />
                     <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
