@@ -11,18 +11,24 @@ import Waterfalls from 'component/waterfalls/index.jsx';
 import './index.styl';
 
 export default class FileUploadDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            files: ''
+        }
+    }
     componentDidMount() {
-        console.log('==================')
-        console.log(this.props.params)
-        console.log('==================')
+        this.setState({
+            files: this.props.location.state.text.files
+        })
     }
     render() {
         return (
             <div className="uploadFileDetail">
                 <div className="back_btn">
-                    <Button size='small' type="primary" onClick={this.props.history.goBack}>返回</Button>
+                    <Button type="primary" onClick={this.props.history.goBack}>返回</Button>
                 </div>
-                <Waterfalls />
+                <Waterfalls files={this.state.files} />
             </div >
         )
     }

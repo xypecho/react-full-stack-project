@@ -2,36 +2,18 @@
  * @Author: xueyp
  * @Date: 2019-11-13 16:01:24
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-13 18:01:20
+ * @Last Modified time: 2019-11-21 10:54:51
  * @description: 15天内新增注册用户的图表
  */
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import { getUserLoginCount } from 'api/user';
 import Tools from 'utils/tools.js';
 import './index.styl';
 
 const _Tools = new Tools();
-
-const data = [
-    {
-        name: '2019-10-29', count: 0
-    },
-    {
-        name: '2019-10-30', count: 0
-    },
-    {
-        name: '2019-10-31', count: 10
-    },
-    {
-        name: '2019-11-01', count: 0
-    },
-    {
-        name: '2019-11-02', count: 0
-    },
-];
 
 export default class BaseAreaCharts extends React.Component {
     constructor(props) {

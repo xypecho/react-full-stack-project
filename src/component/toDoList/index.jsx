@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-13 11:02:06
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-13 11:09:10
+ * @Last Modified time: 2019-11-21 10:42:42
  * @description: todolist组件
  */
 import React from 'react';
@@ -52,7 +52,9 @@ export default class Todolist extends React.Component {
         this.setState({
             todoList: [...this.state.todoList, { name: this.state.newToDoList, checked: false }]
         })
-        this.state.newToDoList = '';
+        this.setState({
+            newToDoList: ''
+        })
     }
     inputTextChange(e) {
         this.setState({

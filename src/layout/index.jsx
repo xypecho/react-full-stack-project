@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-19 15:47:26
+ * @Last Modified time: 2019-11-21 14:23:12
  * @description: 首页布局
  */
 import React from "react";
@@ -10,7 +10,6 @@ import BreadRouter from 'component/breadRouter/index.jsx';
 import './index.styl';
 import { Layout, Menu, Icon, Dropdown, Modal } from 'antd';
 import { connect } from 'react-redux';
-import * as actionCreators from 'store/actions';
 
 const { Header, Sider, Content } = Layout;
 const { confirm } = Modal;
@@ -136,7 +135,7 @@ class LayoutElem extends React.Component {
                             overflow: 'initial'
                         }}
                     >
-                        <BreadRouter />
+                        <BreadRouter routers={this.props.children} />
                         {this.props.children}
                     </Content>
                 </Layout>

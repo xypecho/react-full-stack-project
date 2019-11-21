@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-18 10:22:38
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-19 14:38:35
+ * @Last Modified time: 2019-11-21 10:53:33
  * @description: 文件上传
  */
 import React from 'react';
@@ -62,8 +62,7 @@ class FileUpload extends React.Component {
         })
     }
     handleDetail(text) {
-        console.log(text)
-        this.props.history.push(`/form/fileUploadDetail?id=1`)
+        this.props.history.push({ pathname: '/form/fileUploadDetail', state: { text } });
     }
     successUpload() {
         this.getFilesListApi();
