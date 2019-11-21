@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 15:03:29
+ * @Last Modified time: 2019-11-21 17:03:33
  * @description: 首页布局
  */
 import React from "react";
@@ -60,7 +60,7 @@ class LayoutElem extends React.Component {
                         position: 'fixed',
                         left: 0,
                     }}>
-                    <NavBar history={this.props.history} menus={menus}/>
+                    <NavBar history={this.props.history} menus={menus} />
                 </Sider>
                 <Layout style={{ marginLeft: this.state.marginLeft, transition: 'all 0.2s' }}>
                     <Header style={{ background: '#fff', padding: 0 }}>
@@ -82,7 +82,7 @@ class LayoutElem extends React.Component {
                             overflow: 'initial'
                         }}
                     >
-                        <BreadRouter routers={this.props.children} />
+                        <BreadRouter menus={menus} history={this.props.history}/>
                         {this.props.children}
                     </Content>
                 </Layout>
