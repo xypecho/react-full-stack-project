@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-19 15:23:48
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 17:12:56
+ * @Last Modified time: 2019-11-21 17:27:05
  * @description: 面包屑导航
  */
 import React from 'react';
@@ -38,9 +38,13 @@ export default class BreadRouter extends React.Component {
         }
     }
     componentDidMount() {
-        const pathname = window.location.pathname;
         this.setState({
-            router: findSubMenu(this.props.menus, pathname)
+            router: findSubMenu(this.props.menus, this.props.pathname)
+        })
+    }
+    componentWillReceiveProps(val) {
+        this.setState({
+            router: findSubMenu(this.props.menus, val.pathname)
         })
     }
     render() {
