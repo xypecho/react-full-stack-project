@@ -2,27 +2,26 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 14:23:12
+ * @Last Modified time: 2019-11-21 15:03:29
  * @description: 首页布局
  */
 import React from "react";
 import BreadRouter from 'component/breadRouter/index.jsx';
-import './index.styl';
+import NavBar from 'component/navBar/index.jsx'
 import { Layout, Menu, Icon, Dropdown, Modal } from 'antd';
 import { connect } from 'react-redux';
+import menus from 'router/index';
+import './index.styl';
 
 const { Header, Sider, Content } = Layout;
 const { confirm } = Modal;
-const { SubMenu } = Menu;
 
 class LayoutElem extends React.Component {
-    rootSubmenuKeys = ['/', '/form', '/config', '/auth', '/404'];
     constructor(props) {
         super(props)
         this.state = {
             collapsed: false,
             marginLeft: '200px',
-            openKeys: ['/'],
         };
     }
     toggle() {
@@ -45,19 +44,6 @@ class LayoutElem extends React.Component {
             });
         }
     }
-    handleItemClick(data) {
-        this.props.history.push(data.key)
-    }
-    onOpenChange(openKeys) {
-        const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
-        if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-            this.setState({ openKeys });
-        } else {
-            this.setState({
-                openKeys: latestOpenKey ? [latestOpenKey] : [],
-            });
-        }
-    }
     render() {
         const menu = (
             <Menu onClick={(data) => this.handleDropMenuClick(data)}>
@@ -74,46 +60,7 @@ class LayoutElem extends React.Component {
                         position: 'fixed',
                         left: 0,
                     }}>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']} openKeys={this.state.openKeys}
-                        onClick={({ item, key, keyPath, domEvent }) => this.handleItemClick({ item, key, keyPath, domEvent })} onOpenChange={(openKeys) => this.onOpenChange(openKeys)}>
-                        <Menu.Item key="/">
-                            <Icon type="dashboard" />
-                            <span>工作台</span>
-                        </Menu.Item>
-                        <SubMenu
-                            key="/form"
-                            title={
-                                <span>
-                                    <Icon type="form" />
-                                    <span>表单页</span>
-                                </span>
-                            }
-                        >
-                            <Menu.Item key="5">分步表单</Menu.Item>
-                            <Menu.Item key="/form/fileUpload">文件上传</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="/config"
-                            title={
-                                <span>
-                                    <Icon type="setting" />
-                                    <span>系统设置</span>
-                                </span>
-                            }
-                        >
-                            <Menu.Item key="5">用户管理</Menu.Item>
-                            <Menu.Item key="6">帐号设置</Menu.Item>
-                            <Menu.Item key="7">操作日志</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="/auth">
-                            <Icon type="idcard" />
-                            <span>权限测试页</span>
-                        </Menu.Item>
-                        <Menu.Item key="/404">
-                            <Icon type="facebook" />
-                            <span>404</span>
-                        </Menu.Item>
-                    </Menu>
+                    <NavBar history={this.props.history} menus={menus}/>
                 </Sider>
                 <Layout style={{ marginLeft: this.state.marginLeft, transition: 'all 0.2s' }}>
                     <Header style={{ background: '#fff', padding: 0 }}>
