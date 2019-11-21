@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-21 14:44:01
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 15:16:11
+ * @Last Modified time: 2019-11-21 17:48:00
  * @description: 二次封装antd的menu
  */
 import React from 'react';
@@ -27,10 +27,14 @@ export default class NavBar extends React.Component {
         super(props)
         this.state = {
             openKeys: ['/'],
+            currentUrl: '/'
         };
     }
     handleItemClick(data) {
         this.props.history.push(data.key)
+        this.setState({
+            currentUrl: data.key
+        })
     }
     onOpenChange(openKeys) {
         const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
@@ -42,9 +46,15 @@ export default class NavBar extends React.Component {
             });
         }
     }
+    componentDidMount() {
+        const pathname = window.location.pathname;
+        this.setState({
+            currentUrl: pathname
+        });
+    }
     render() {
         return (
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']} openKeys={this.state.openKeys}
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']} openKeys={this.state.openKeys} selectedKeys={[this.state.currentUrl]}
                 onClick={({ item, key, keyPath, domEvent }) => this.handleItemClick({ item, key, keyPath, domEvent })} onOpenChange={(openKeys) => this.onOpenChange(openKeys)}>
                 {
                     this.props.menus.map(item => {
