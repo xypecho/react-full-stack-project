@@ -2,10 +2,11 @@
  * @Author: xueyp
  * @Date: 2019-11-19 14:29:49
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 10:35:17
+ * @Last Modified time: 2019-11-22 10:48:41
  * @description: 瀑布流组件
  */
 import React from 'react';
+import './index.styl';
 
 export default class Waterfalls extends React.Component {
   constructor(props) {
@@ -15,12 +16,12 @@ export default class Waterfalls extends React.Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    // let imgList = JSON.parse(JSON.stringify(nextProps)).split(',');
-    // this.setState({
-    //   imgList
-    // })
-    console.log(this.state.imgList);
+    let imgList = JSON.parse(JSON.stringify(nextProps.files)).split(';');
+    this.setState({
+      imgList
+    }, () => {
+      console.log(this.state.imgList);
+    })
   }
   render() {
     return (

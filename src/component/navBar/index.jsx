@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-21 14:44:01
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 10:18:49
+ * @Last Modified time: 2019-11-22 14:42:57
  * @description: 二次封装antd的menu
  */
 import React from 'react';
@@ -13,12 +13,16 @@ const { SubMenu } = Menu;
 const _Tools = new Tools();
 
 const createSubMenu = (route) => {
-    const children = route.subs;
+    // 过滤掉不显示的菜单
+    const children = route.subs.filter(item => !item.hidden);
     return (
         <SubMenu key={route.key} title={<span><Icon type={route.icon} /><span>{route.title}</span></span>}>
             {children.map(item => {
-                return !item.subs ?
-                    (<Menu.Item key={item.key}>{item.title}</Menu.Item>) : createSubMenu(item)
+                if (item.subs && item.subs.some(val => !val.hidden)) {
+                    return createSubMenu(item);
+                } else {
+                    return (<Menu.Item key={item.key}>{item.title}</Menu.Item>);
+                }
             })}
         </SubMenu>
     )
@@ -50,10 +54,12 @@ export default class NavBar extends React.Component {
     }
     componentDidMount() {
         const pathname = window.location.pathname;
-        const isSetOpenKeys = _Tools.findSubMenu(this.props.menus, pathname).length > 1;
-        isSetOpenKeys && this.setState({ openKeys: [_Tools.findSubMenu(this.props.menus, pathname)[0].key] });
+        let menuArr = _Tools.findSubMenu(this.props.menus, pathname);
+        const isSetOpenKeys = menuArr.length > 1;
+        isSetOpenKeys && this.setState({ openKeys: [menuArr[0].key] });
+        let currentUrl = isSetOpenKeys && menuArr[menuArr.length - 1].hidden ? menuArr[menuArr.length - 2].key : pathname;
         this.setState({
-            currentUrl: pathname
+            currentUrl
         });
     }
     render() {
@@ -61,7 +67,7 @@ export default class NavBar extends React.Component {
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']} openKeys={this.state.openKeys} selectedKeys={[this.state.currentUrl]}
                 onClick={({ item, key, keyPath, domEvent }) => this.handleItemClick({ item, key, keyPath, domEvent })} onOpenChange={(openKeys) => this.onOpenChange(openKeys)}>
                 {
-                    this.props.menus.map(item => {
+                    this.props.menus.filter(menu => !menu.hidden).map(item => {
                         if (!item.subs) {
                             return (
                                 <Menu.Item key={item.key}>

@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-13 17:11:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 10:07:13
+ * @Last Modified time: 2019-11-22 14:40:06
  * @description: 一些工具
  */
 export default class Tools {
@@ -39,13 +39,13 @@ export default class Tools {
         const loop = (menus) => {
             return menus.some(item => {
                 if (item.key === pathname) {
-                    arr.unshift({ key: item.key, title: item.title })
+                    arr.unshift({ key: item.key, title: item.title, hidden: item.hidden })
                     return true
                 } else {
                     if (item.subs) {
                         let hasSamePathname = loop(item.subs, pathname);
                         if (hasSamePathname) {
-                            arr.unshift({ key: item.key, title: item.title })
+                            arr.unshift({ key: item.key, title: item.title, hidden: item.hidden })
                         }
                         return hasSamePathname;
                     }
