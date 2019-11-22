@@ -2,13 +2,15 @@
  * @Author: xueyp
  * @Date: 2019-11-21 14:44:01
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 17:48:00
+ * @Last Modified time: 2019-11-22 10:18:49
  * @description: 二次封装antd的menu
  */
 import React from 'react';
 import { Menu, Icon } from 'antd';
+import Tools from 'utils/tools';
 
 const { SubMenu } = Menu;
+const _Tools = new Tools();
 
 const createSubMenu = (route) => {
     const children = route.subs;
@@ -48,6 +50,8 @@ export default class NavBar extends React.Component {
     }
     componentDidMount() {
         const pathname = window.location.pathname;
+        const isSetOpenKeys = _Tools.findSubMenu(this.props.menus, pathname).length > 1;
+        isSetOpenKeys && this.setState({ openKeys: [_Tools.findSubMenu(this.props.menus, pathname)[0].key] });
         this.setState({
             currentUrl: pathname
         });

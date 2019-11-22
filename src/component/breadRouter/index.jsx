@@ -2,33 +2,14 @@
  * @Author: xueyp
  * @Date: 2019-11-19 15:23:48
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 17:27:05
+ * @Last Modified time: 2019-11-22 10:07:23
  * @description: 面包屑导航
  */
 import React from 'react';
 import { Breadcrumb } from 'antd';
+import Tools from 'utils/tools';
 
-const findSubMenu = (menus, pathname) => {
-    const arr = [];
-    const loop = (menus) => {
-        return menus.some(item => {
-            if (item.key === pathname) {
-                arr.unshift({ key: item.key, title: item.title })
-                return true
-            } else {
-                if (item.subs) {
-                    let hasSamePathname = loop(item.subs, pathname);
-                    if (hasSamePathname) {
-                        arr.unshift({ key: item.key, title: item.title })
-                    }
-                    return hasSamePathname;
-                }
-            }
-        })
-    }
-    loop(menus);
-    return arr;
-}
+const _Tools = new Tools();
 
 export default class BreadRouter extends React.Component {
     constructor(props) {
@@ -39,12 +20,12 @@ export default class BreadRouter extends React.Component {
     }
     componentDidMount() {
         this.setState({
-            router: findSubMenu(this.props.menus, this.props.pathname)
+            router: _Tools.findSubMenu(this.props.menus, this.props.pathname)
         })
     }
     componentWillReceiveProps(val) {
         this.setState({
-            router: findSubMenu(this.props.menus, val.pathname)
+            router: _Tools.findSubMenu(this.props.menus, val.pathname)
         })
     }
     render() {
