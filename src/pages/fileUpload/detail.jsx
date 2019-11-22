@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-19 14:32:58
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 14:20:13
+ * @Last Modified time: 2019-11-22 14:48:57
  * @description: 文件上传详情页
  */
 import React from 'react';
@@ -18,9 +18,9 @@ export default class FileUploadDetail extends React.Component {
         }
     }
     componentDidMount() {
-        // this.setState({
-        //     files: this.props.location.state.text.files
-        // })
+        this.setState({
+            files: this.props.location.state.text.files
+        })
     }
     render() {
         return (

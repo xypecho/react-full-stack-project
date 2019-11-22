@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 17:23:23
+ * @Last Modified time: 2019-11-22 15:01:33
  * @description: 首页布局
  */
 import React from "react";
@@ -82,7 +82,7 @@ class LayoutElem extends React.Component {
                             overflow: 'initial'
                         }}
                     >
-                        <BreadRouter menus={menus} pathname={this.props.history.location.pathname}/>
+                        <BreadRouter menus={menus} pathname={this.props.history.location.pathname} />
                         {this.props.children}
                     </Content>
                 </Layout>
