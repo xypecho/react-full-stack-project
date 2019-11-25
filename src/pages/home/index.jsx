@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-25 14:17:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 11:13:07
+ * @Last Modified time: 2019-11-25 14:35:11
  * @description: 首页
  */
 import React from 'react';
@@ -13,6 +13,7 @@ import ToDoList from 'component/toDoList/index';
 import GithubDynamic from 'component/githubDynamic/index';
 import BaseAreaCharts from 'component/charts/baseAreaCharts/index';
 import { connect } from 'react-redux';
+import defaultAvatar from 'assets/images/avatar.gif';
 
 class Home extends React.Component {
     constructor(props) {
@@ -77,7 +78,7 @@ class Home extends React.Component {
                                 <div className="home-header-left">
                                     <div className="home-header-left-child">
                                         <span className="avatar-wrapper">
-                                            <img src={this.props.userInfo.avatar} alt="" />
+                                            <img src={this.props.userInfo.avatar || defaultAvatar} alt="" />
                                         </span>
                                     </div>
                                     <div className="home-header-left-secondChild">

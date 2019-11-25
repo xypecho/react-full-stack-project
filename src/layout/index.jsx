@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 15:01:33
+ * @Last Modified time: 2019-11-25 14:34:24
  * @description: 首页布局
  */
 import React from "react";
@@ -11,6 +11,7 @@ import NavBar from 'component/navBar/index.jsx'
 import { Layout, Menu, Icon, Dropdown, Modal } from 'antd';
 import { connect } from 'react-redux';
 import menus from 'router/index';
+import defaultAvatar from 'assets/images/avatar.gif';
 import './index.styl';
 
 const { Header, Sider, Content } = Layout;
@@ -73,7 +74,7 @@ class LayoutElem extends React.Component {
                             <span className='username' style={{ userSelect: 'none' }}>{this.props.userInfo.username}</span>
                         </Dropdown>
                         <div className="avatar">
-                            <img src={this.props.userInfo.avatar} alt="" height="40" width="40" />
+                            <img src={this.props.userInfo.avatar || defaultAvatar} alt="" height="40" width="40" />
                         </div>
                     </Header>
                     <Content
