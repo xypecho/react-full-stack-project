@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-24 14:33:37
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-14 21:01:55
+ * @Last Modified time: 2019-11-25 15:28:05
  * @description: 登录的表单
  */
 import React from 'react';
@@ -27,7 +27,8 @@ class LoginForm extends React.Component {
                 login(values).then(res => {
                     this.props.changeUserInfo(res.data.data);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.data));
-                    this.props.history.push('/');
+                    const params = new URLSearchParams(window.location.search);
+                    this.props.history.push(params.get('redirect') || '/');
                 })
             }
         });

@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-18 13:33:30
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-18 15:12:40
+ * @Last Modified time: 2019-11-25 15:03:03
  * @description: 封装分页组件
  */
 import React from 'react';
@@ -26,7 +26,7 @@ export default class New_Pagination extends React.Component {
     }
     onSizeChange(current, pageSize) {
         this.setState({
-            current,
+            current: 1,
             pageSize
         }, () => {
             this.props.pageChange(this.state);
