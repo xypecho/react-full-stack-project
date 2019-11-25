@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-19 15:23:48
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 10:07:23
+ * @Last Modified time: 2019-11-25 13:38:26
  * @description: 面包屑导航
  */
 import React from 'react';
@@ -23,7 +23,7 @@ export default class BreadRouter extends React.Component {
             router: _Tools.findSubMenu(this.props.menus, this.props.pathname)
         })
     }
-    componentWillReceiveProps(val) {
+    UNSAFE_componentWillReceiveProps(val) {
         this.setState({
             router: _Tools.findSubMenu(this.props.menus, val.pathname)
         })

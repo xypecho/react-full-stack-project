@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-21 14:33:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 11:15:09
+ * @Last Modified time: 2019-11-25 10:51:56
  * @description: 路由配置表
  */
 const menus = [
@@ -14,7 +14,20 @@ const menus = [
     hidden: false,
     subs: [
       {
-        key: '/form/stepForm', title: '分步表单', hidden: false
+        key: '/form/stepForm', 
+        title: '分步表单', 
+        hidden: false,
+        subs: [
+          {
+            key: '/form/stepForm/step1', title: '验证身份', hidden: true
+          },
+          {
+            key: '/form/stepForm/step2', title: '设置新密码', hidden: true
+          },
+          {
+            key: '/form/stepForm/step3', title: '完成', hidden: true
+          }
+        ]
       },
       {
         key: '/form/fileUpload',

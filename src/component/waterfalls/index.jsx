@@ -28,9 +28,9 @@ export default class Waterfalls extends React.Component {
     return (
       <div className="waterfall">
         {
-          this.state.imgList.map(item => {
+          this.state.imgList.map((item, index) => {
             return (
-              <div className="item">
+              <div className="item" key={index}>
                 <div className='item-content'>
                   <img src={item} alt="" />
                 </div>
