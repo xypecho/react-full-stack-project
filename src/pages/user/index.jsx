@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-25 14:49:14
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-25 16:14:35
+ * @Last Modified time: 2019-11-25 17:47:48
  * @description: 用户管理
  */
 import React from 'react';
@@ -11,7 +11,10 @@ import { Table, Switch, message, Spin } from 'antd';
 import { getUserList, deleteUser, editUser } from 'api/user';
 import { connect } from 'react-redux';
 import defaultAvatar from 'assets/images/avatar.gif';
+import Search from 'component/search/index.jsx';
 import './index.styl';
+
+const searchTypes = ['accountStatus', 'timeRange', 'like'];
 
 class User extends React.Component {
     constructor(props) {
@@ -42,7 +45,9 @@ class User extends React.Component {
             })
         }).catch(() => {
             this.setState({
-                loading: false
+                loading: false,
+                dableData: [],
+                total: 0
             })
         })
     }
@@ -76,6 +81,16 @@ class User extends React.Component {
         let tag = data ? 1 : 0;
         record.status = tag;
         editUser({ userInfo: record });
+    }
+    handleSearch(params) {
+        this.setState({
+            prams: {
+                ...this.state.prams,
+                data: params
+            }
+        }, () => {
+            this.getUserListApi();
+        })
     }
     render() {
         const columns = [
@@ -135,6 +150,7 @@ class User extends React.Component {
         return (
             <div className='fileUpload'>
                 <Spin spinning={this.state.loading}>
+                    <Search searchTypes={searchTypes} handleSearch={(params) => this.handleSearch(params)} />
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="uid" />
                     <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
