@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 14:12:21
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-25 14:48:37
+ * @Last Modified time: 2019-11-26 16:32:47
  * @description: 入口文件
  */
 import React from "react";
@@ -15,6 +15,7 @@ import FileUpload from 'pages/fileUpload/index';
 import FileUploadDetail from 'pages/fileUpload/detail';
 import StepForm from 'pages/stepForm/index.jsx';
 import User from 'pages/user/index.jsx';
+import Account from 'pages/account/index.jsx';
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
 import { Provider } from 'react-redux'
 import store from "./store/index";
@@ -39,6 +40,7 @@ export default class App extends React.Component {
                     <PrivateRoute path="/form/fileUploadDetail" breadcrumbName="文件上传详情" component={FileUploadDetail} />
                     <PrivateRoute path="/form/stepForm" breadcrumbName="分步表单" component={StepForm} />
                     <PrivateRoute path="/config/user" breadcrumbName="用户管理" component={User} />
+                    <PrivateRoute path="/config/account" breadcrumbName="帐号设置" component={Account} />
                     <Route component={ErrorPage} />
                   </Switch>
                 </LayoutElem>

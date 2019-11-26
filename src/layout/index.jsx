@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-25 14:34:24
+ * @Last Modified time: 2019-11-26 16:41:17
  * @description: 首页布局
  */
 import React from "react";
@@ -23,6 +23,7 @@ class LayoutElem extends React.Component {
         this.state = {
             collapsed: false,
             marginLeft: '200px',
+            userInfo: {}
         };
     }
     toggle() {
@@ -33,7 +34,7 @@ class LayoutElem extends React.Component {
     };
     handleDropMenuClick({ key }) {
         if (key === '1') {
-
+            this.props.history.push('/config/account');
         } else {
             confirm({
                 title: '警告',
@@ -41,9 +42,15 @@ class LayoutElem extends React.Component {
                 onOk() {
                     window.localStorage.clear();
                     window.location.reload();
+                    window.location.href = window.location.origin;
                 },
             });
         }
+    }
+    UNSAFE_componentWillMount () {
+        this.setState({
+            userInfo: this.props.userInfo
+        })
     }
     render() {
         const menu = (
@@ -71,10 +78,10 @@ class LayoutElem extends React.Component {
                             onClick={() => this.toggle()}
                         />
                         <Dropdown overlay={menu} trigger={['hover']}>
-                            <span className='username' style={{ userSelect: 'none' }}>{this.props.userInfo.username}</span>
+                            <span className='username' style={{ userSelect: 'none' }}>{this.state.userInfo.username}</span>
                         </Dropdown>
                         <div className="avatar">
-                            <img src={this.props.userInfo.avatar || defaultAvatar} alt="" height="40" width="40" />
+                            <img src={this.state.userInfo.avatar || defaultAvatar} alt="" height="40" width="40" />
                         </div>
                     </Header>
                     <Content
