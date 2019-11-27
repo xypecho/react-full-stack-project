@@ -2,8 +2,8 @@
  * @Author: xueyp
  * @Date: 2019-11-27 14:39:59
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-27 14:47:09
- * @description: 2019-11-27 14:39:59
+ * @Last Modified time: 2019-11-27 15:14:42
+ * @description: 操作日志
  */
 import React from 'react';
 import New_Pagination from 'component/pagination/index';
@@ -81,7 +81,7 @@ export default class Log extends React.Component {
         return (
             <div className='fileUpload'>
                 <Spin spinning={this.state.loading}>
-                    <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="uid" />
+                    <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="id" />
                     <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
             </div>
