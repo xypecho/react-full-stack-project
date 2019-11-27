@@ -2,21 +2,27 @@
  * @Author: xueyp
  * @Date: 2019-10-25 09:28:22
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-27 14:33:18
+ * @Last Modified time: 2019-11-27 15:19:54
  * @description: 封装的axios请求
  */
 import axios from 'axios';
 import { message } from 'antd';
 
 const record = {};// 用来存储请求和响应的信息
-const filterUrl = [`${process.env.BASE_URL}/api/log/insertOperationLog`, `${process.env.BASE_URL}/api/user/userLoginCount`, `${process.env.BASE_URL}/api/spider/hitokoto`, 'https://api.github.com/repos/xypecho/react-full-stack-project/commits', `${process.env.BASE_URL}/api/user/md5Password`, `${process.env.BASE_URL}/api/user/userInfo`]; // 不需要拦截的请求的url
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'http://106.53.78.195:8081';
+const filterUrl = [`${baseURL}/api/log/insertOperationLog`, `${baseURL}/api/user/userLoginCount`, `${baseURL}/api/spider/hitokoto`, 'https://api.github.com/repos/xypecho/react-full-stack-project/commits', `${baseURL}/api/user/md5Password`, `${baseURL}/api/user/userInfo`]; // 不需要拦截的请求的url
 
 const service = axios.create({
-    baseURL: 'http://localhost:8081',
+    baseURL: baseURL,
     timeout: 10000
 });
 
 service.interceptors.request.use(function (config) {
+    if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1 && filterUrl.indexOf(`${config.url}`) === -1) {
+        // console.log(config);
+        const { data, url } = config;
+        record.request = { data, url };
+    }
     // Do something before request is sent
     const { data, url } = config;
     record.request = { data, url };
