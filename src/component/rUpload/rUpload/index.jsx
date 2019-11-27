@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-26 14:56:11
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-26 16:16:02
+ * @Last Modified time: 2019-11-27 10:53:17
  * @description: 封装的头像上传组件
  */
 import React from 'react';
@@ -64,6 +64,7 @@ class UploadAvatar extends React.Component {
             }
         }
     };
+    
     beforeUpload = (file) => {
         const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
         const allowImage = ['GIF', 'PNG', 'JPEG', 'JPG'];

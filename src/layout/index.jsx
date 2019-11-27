@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 16:41:55
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-26 16:41:17
+ * @Last Modified time: 2019-11-27 10:53:19
  * @description: 首页布局
  */
 import React from "react";
@@ -22,8 +22,7 @@ class LayoutElem extends React.Component {
         super(props)
         this.state = {
             collapsed: false,
-            marginLeft: '200px',
-            userInfo: {}
+            marginLeft: '200px'
         };
     }
     toggle() {
@@ -47,10 +46,11 @@ class LayoutElem extends React.Component {
             });
         }
     }
-    UNSAFE_componentWillMount () {
-        this.setState({
-            userInfo: this.props.userInfo
-        })
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+        // if (nextProps.currentStep) {
+        //     location.assign(nextProps.currentStep);
+        // }
     }
     render() {
         const menu = (
@@ -78,10 +78,10 @@ class LayoutElem extends React.Component {
                             onClick={() => this.toggle()}
                         />
                         <Dropdown overlay={menu} trigger={['hover']}>
-                            <span className='username' style={{ userSelect: 'none' }}>{this.state.userInfo.username}</span>
+                            <span className='username' style={{ userSelect: 'none' }}>{this.props.userInfo.username}</span>
                         </Dropdown>
                         <div className="avatar">
-                            <img src={this.state.userInfo.avatar || defaultAvatar} alt="" height="40" width="40" />
+                            <img src={this.props.userInfo.avatar || defaultAvatar} alt="" height="40" width="40" />
                         </div>
                     </Header>
                     <Content
