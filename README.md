@@ -1,6 +1,8 @@
 ## 0、写在前面
 最近看react教程跟着写了两个demo，然后发现还是需要自己来写一个才能更好的学习，之前写过一个[vue版本的后台管理系统](https://github.com/xypecho/vue-full-stack-project)，然后就用那个项目的接口复刻了一个react版本的。
 
+[线上预览地址](http://106.53.78.195/react/)
+
 ## 1、技术栈
 前端：react 16.x 、 react-dedux 、 react-router 、 axios 、 webpack 、 ES6 、 stylus 、 antd
 
