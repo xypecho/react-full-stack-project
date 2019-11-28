@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 14:12:21
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-27 14:47:59
+ * @Last Modified time: 2019-11-28 09:22:32
  * @description: 入口文件
  */
 import React from "react";
@@ -27,6 +27,13 @@ import { ConfigProvider } from 'antd';
 // 把antd内置的英文改成中文
 
 export default class App extends React.Component {
+  componentDidMount() {
+    if (document.getElementById("Loading-wrapper")) {
+      setTimeout(() => {
+        document.body.removeChild(document.getElementById("Loading-wrapper"));
+      }, 500);
+    }
+  }
   render() {
     return (
       <ConfigProvider locale={zhCN}>
