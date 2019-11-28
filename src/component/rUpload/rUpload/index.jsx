@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-26 14:56:11
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-28 14:45:00
+ * @Last Modified time: 2019-11-28 15:25:02
  * @description: 封装的头像上传组件
  */
 import React from 'react';
@@ -55,7 +55,7 @@ class UploadAvatar extends React.Component {
         if (file.status === 'done') {
             if (file.response.status === 200) {
                 let avatar = `${document.location.protocol}//${file.response.data.res.substring(0, file.response.data.res.indexOf('/'))}/${file.response.data.path}`;
-                let userInfo = this.props.userInfo;
+                let userInfo = JSON.parse(JSON.stringify(this.props.userInfo));
                 userInfo.avatar = avatar;
                 this.props.changeUserInfo(userInfo);
                 localStorage.setItem('userInfo', JSON.stringify(userInfo));
