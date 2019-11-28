@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 0、写在前面
+最近看react教程跟着写了两个demo，然后发现还是需要自己来写一个才能更好的学习，之前写过一个[vue版本的后台管理系统](https://github.com/xypecho/vue-full-stack-project)，然后就用那个项目的接口复刻了一个react版本的。
 
-## Available Scripts
+## 1、技术栈
+前端：react 16.x 、 react-dedux 、 react-router 、 axios 、 webpack 、 ES6 、 stylus 、 antd
 
-In the project directory, you can run:
+## 2、项目结构
 
-### `yarn start`
+```
+├──  build                                  ---react打包后的代码所在文件夹
+├──  config                              
+├──  node_modules                          
+├──  public                          
+├──  src                                    ---核心代码目录
+|   ├──  api                                ---封装的接口调用
+|   ├──  assets                            
+|   |    ├── images                         ---静态资源存放目录
+|   ├──  components                         ---组件存放目录
+|   ├──  layout                             ---页面骨架
+|   ├──  pages                              ---页面存放目录
+|   ├──  router                             ---路由信息
+|   ├──  store                              ---redux相关的文件
+|   ├──  utils                              
+|   |    ├── request.js                     ---封装了axios
+|   |    ├── tools.js                       ---封装了一些常用的函数
+|   ├── App.js                           
+|   ├── index.js                          
+├── package.json     
+......                                      
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 3、快速部署
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+yarn install     
+yarn start
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+// 后端的代码运行步骤详见[这里](https://github.com/xypecho/vue-full-stack-project)
+```
