@@ -2,13 +2,13 @@
  * @Author: xueyp
  * @Date: 2019-11-18 10:22:38
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 10:53:33
+ * @Last Modified time: 2019-11-28 14:54:17
  * @description: 文件上传
  */
 import React from 'react';
-import New_Pagination from 'component/pagination/index';
+import NewPagination from 'component/pagination/index';
 import ProgressUpload from 'component/rUpload/progressUpload/index';
-import { Table, Divider, message, Spin } from 'antd';
+import { Table, Divider, message, Spin, Button } from 'antd';
 import { getFilesList, deleteUploadList } from 'api/upload';
 import { connect } from 'react-redux';
 import './index.styl';
@@ -87,9 +87,13 @@ class FileUpload extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <a onClick={() => this.handleDetail(text)}>查看</a>
+                        <Button type="link" onClick={() => this.handleDetail(text)}>
+                            查看
+                        </Button>
                         <Divider type="vertical" />
-                        <a onClick={() => this.handleDelete(text, record)}>删除</a>
+                        <Button type="link" onClick={() => this.handleDelete(text, record)}>
+                            删除
+                        </Button>
                     </span>
                 ),
             },
@@ -99,7 +103,7 @@ class FileUpload extends React.Component {
                 <Spin spinning={this.state.loading}>
                     <ProgressUpload successUpload={() => this.successUpload()} />
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="upload_time" />
-                    <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
+                    <NewPagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
             </div>
         )

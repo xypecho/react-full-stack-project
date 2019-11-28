@@ -2,11 +2,11 @@
  * @Author: xueyp
  * @Date: 2019-11-19 14:29:49
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 15:59:29
+ * @Last Modified time: 2019-11-28 14:59:13
  * @description: 瀑布流组件
  */
 import React from 'react';
-import loadingImg from 'assets/images/lazy_loading.gif';
+// import loadingImg from 'assets/images/lazy_loading.gif';
 import './index.styl';
 
 export default class Waterfalls extends React.Component {

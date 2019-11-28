@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 14:12:21
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-28 09:22:32
+ * @Last Modified time: 2019-11-28 14:40:43
  * @description: 入口文件
  */
 import React from "react";
@@ -18,7 +18,7 @@ import User from 'pages/user/index.jsx';
 import Account from 'pages/account/index.jsx';
 import Log from 'pages/log/index.jsx';
 import Auth from 'pages/auth/index.jsx';
-import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux'
 import store from "./store/index";
 // 把antd内置的英文改成中文

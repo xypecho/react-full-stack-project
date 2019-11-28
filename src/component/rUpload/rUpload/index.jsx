@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-26 14:56:11
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-27 10:53:17
+ * @Last Modified time: 2019-11-28 14:45:00
  * @description: 封装的头像上传组件
  */
 import React from 'react';
@@ -29,7 +29,7 @@ class UploadAvatar extends React.Component {
             actionUrl: ''
         };
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let url = process.env.NODE_ENV === 'development'
             ? `http://localhost:8081/api/upload/image?uid=${this.props.userInfo.uid}`
             : `http://106.53.78.195:8081/api/upload/image?uid=${this.props.userInfo.uid}`;
@@ -64,7 +64,7 @@ class UploadAvatar extends React.Component {
             }
         }
     };
-    
+
     beforeUpload = (file) => {
         const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
         const allowImage = ['GIF', 'PNG', 'JPEG', 'JPG'];

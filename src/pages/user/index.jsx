@@ -2,12 +2,12 @@
  * @Author: xueyp
  * @Date: 2019-11-25 14:49:14
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-25 17:47:48
+ * @Last Modified time: 2019-11-28 14:58:32
  * @description: 用户管理
  */
 import React from 'react';
-import New_Pagination from 'component/pagination/index';
-import { Table, Switch, message, Spin } from 'antd';
+import NewPagination from 'component/pagination/index';
+import { Table, Switch, message, Spin, Button } from 'antd';
 import { getUserList, deleteUser, editUser } from 'api/user';
 import { connect } from 'react-redux';
 import defaultAvatar from 'assets/images/avatar.gif';
@@ -142,7 +142,9 @@ class User extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <a onClick={() => this.handleDelete(text, record)}>删除</a>
+                        <Button onClick={() => this.handleDelete(text, record)} type="link">
+                            删除
+                        </Button>
                     </span>
                 ),
             },
@@ -152,7 +154,7 @@ class User extends React.Component {
                 <Spin spinning={this.state.loading}>
                     <Search searchTypes={searchTypes} handleSearch={(params) => this.handleSearch(params)} />
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="uid" />
-                    <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
+                    <NewPagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
             </div>
         )

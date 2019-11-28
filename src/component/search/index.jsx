@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-25 17:15:39
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-25 17:57:08
+ * @Last Modified time: 2019-11-28 15:00:27
  * @description: 封装搜索组件
  */
 import React from 'react';
@@ -38,7 +38,7 @@ export default class Search extends React.Component {
                     searchParams: { ...this.state.searchParams, timeRange: value }
                 })
                 break;
-            case 'like':
+            default:
                 this.setState({
                     searchParams: { ...this.state.searchParams, like: value }
                 })

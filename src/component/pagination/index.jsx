@@ -9,7 +9,7 @@ import React from 'react';
 import { Pagination } from 'antd';
 import './index.styl';
 
-export default class New_Pagination extends React.Component {
+export default class NewPagination extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -2,11 +2,11 @@
  * @Author: xueyp
  * @Date: 2019-11-27 14:39:59
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-27 15:14:42
+ * @Last Modified time: 2019-11-28 14:43:10
  * @description: 操作日志
  */
 import React from 'react';
-import New_Pagination from 'component/pagination/index';
+import NewPagination from 'component/pagination/index';
 import { Table, Spin } from 'antd';
 import { getOperationLogList} from 'api/log';
 import './index.styl';
@@ -82,7 +82,7 @@ export default class Log extends React.Component {
             <div className='fileUpload'>
                 <Spin spinning={this.state.loading}>
                     <Table columns={columns} dataSource={this.state.dableData} pagination={false} rowKey="id" />
-                    <New_Pagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
+                    <NewPagination total={this.state.total} pageChange={(data) => this.pageChange(data)} />
                 </Spin>
             </div>
         )

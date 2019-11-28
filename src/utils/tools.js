@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-13 17:11:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-22 14:40:06
+ * @Last Modified time: 2019-11-28 15:16:54
  * @description: 一些工具
  */
 export default class Tools {
@@ -48,6 +48,8 @@ export default class Tools {
                             arr.unshift({ key: item.key, title: item.title, hidden: item.hidden })
                         }
                         return hasSamePathname;
+                    } else {
+                        return null;
                     }
                 }
             })

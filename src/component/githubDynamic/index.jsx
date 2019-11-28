@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-11-13 15:06:04
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-21 10:41:25
+ * @Last Modified time: 2019-11-28 15:09:02
  * @description: github动态组件
  */
 import React, { Fragment } from 'react';
@@ -39,6 +39,8 @@ export default class GithubDynamic extends React.Component {
                                     </div>
                                 </div>
                             )
+                        } else {
+                            return null;
                         }
                     })
                 }
