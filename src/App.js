@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2019-10-23 14:12:21
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-11-28 14:40:43
+ * @Last Modified time: 2019-11-28 15:56:16
  * @description: 入口文件
  */
 import React from "react";
@@ -18,7 +18,7 @@ import User from 'pages/user/index.jsx';
 import Account from 'pages/account/index.jsx';
 import Log from 'pages/log/index.jsx';
 import Auth from 'pages/auth/index.jsx';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch ,Redirect} from "react-router-dom";
 import { Provider } from 'react-redux'
 import store from "./store/index";
 // 把antd内置的英文改成中文
@@ -45,6 +45,7 @@ export default class App extends React.Component {
                 <LayoutElem history={props.history}>
                   <Switch>
                     <PrivateRoute exact path="/" breadcrumbName="工作台" component={Home} />
+                    <Redirect exact from='/react' to='/' />
                     <PrivateRoute path="/form/fileUpload" breadcrumbName="文件上传" component={FileUpload} />
                     <PrivateRoute path="/form/fileUploadDetail" breadcrumbName="文件上传详情" component={FileUploadDetail} />
                     <PrivateRoute path="/form/stepForm" breadcrumbName="分步表单" component={StepForm} />
